@@ -449,7 +449,7 @@ in $X$ is path connected.
     If $X$ is locally path connected, 
     each path component is a connected component and vice versa.
     Then every connected open set in $X$ lies in a connected component $C$,
-    which is a path connected component. Them $X$ is also path connected as 
+    which is a path connected component. Then $X$ is also path connected as 
     it lies in a path connected component. 
     
 \end{proof}
@@ -702,15 +702,18 @@ a homeomorphism of their one point compactifications.
     
 \end{proof}
 
-\section{Section 29}
 \subsubsection*{Question 7.}
 Every locally compact Hausdorff space is completely regular.
 \begin{proof}
     Let $X$ be locally compact Hausdorff. Then there exists 
     a compact Hausdorff $Y$, which is a one point compactification of 
     $X$. Compact Hausdorff implies normality, which implies complete regularity.
-
+    $Y$ is completely regular, so $X$, as a subspace of $Y$ is completely regular too.
 \end{proof}
+\begin{remark}
+    A subspace of a completely regular space is completely regular. A
+product of completely regular spaces is completely regular. (Theorem 33.2, Munkres)
+\end{remark}
 
 \subsubsection*{Question 8.} Let $X$ be completely regular, $A$, $B$, closed 
 disjoint subsets of $X$. If $A$ is compact, there is a continuous 
