@@ -1,0 +1,824 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{tikz} 
+
+% DEFINE 
+\newtheorem*{sn}{Solution}
+\newtheorem*{ex}{Exercise}
+\newtheorem{remark}{Remark}
+% \newenvironment{statement}[2][Statement]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\begin{document}
+ 
+
+\title{MA3209 Revision} % replace with the problem you are writing up
+\author{Sum Hung Yee} % replace with your name
+\maketitle
+\section{Section 22}
+\subsubsection*{Question 2a.} Let $p: X \rightarrow Y$ be a continuous map. If $f: Y \rightarrow X$ is continuous
+with $p \circ f$ the identity, then $p$ is a quotient map.
+\begin{proof}
+    Since $p$ has a right inverse, it is surjective. Since $p$ is continuous,
+    for open $U \subset Y$, $p^{-1}(U)$ is open. Now suppose $p^{-1}(V) \subset X$ is open.
+    Then $f^{-1}(p^{-1}(V)) \subset Y$ is open. 
+    But $V = \{x\in X \mid p \circ f(x) \in V\}$
+\end{proof}
+% Question 3. Let $\pi_1 : \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ be the projection onto the first coordinate. 
+% Let $A$ be the subspace of $\mathbb{R} \times \mathbb{R}$ 
+% consisting of all points $(x, y)$ for which either $x \geq 0$ or $y = 0$ (or both). 
+% Define $q: A \to \mathbb{R}$ by restricting $\pi_1$ to $A$. 
+% Show that $q$ is a quotient map that is neither open nor closed.
+% \begin{proof}
+%     $q$ is a continuous, as the projection map is continuous under the product topology.
+%     $\pi_1$ is continuous and $q^{-1}(U) = \pi_1^{-1}(U) \subset \mathbb{R}^2$ is open,
+%     and $\pi_1^{-1}(U) \cap A \subset A$ is open. So $q$ is continuous.
+%     We know $q$ is surjective, since for any $x \in X$,
+%     we can find $(x, 0) \in A$ such that $q(x, 0) = x$.
+%     Now suppose $V \subset X$ such that $q^{-1}(V) \subset A$ is open. 
+%     By surjectivity of $q$, $V = q(q^{-1}(V))$.
+%     By considering the preimage $q^{-1}(V)$, and considering that it is open under the subspace topology,
+%     $V$ must be open.   
+
+%     However, it is not an open or closed map. Consider the set 
+%     $C = \{(x, y) \mid x \geq 0, 1 < y < 2\} \subset A$ is open. However $q(C) = [0, \infty) \subset \mathbb{R}$ is not open.
+%     Consider the set $B = \{(x, 1/x) \mid x > 0\}  \subset A$ is closed. 
+    
+    
+% \end{proof}
+Question 5. Let \( p: X \to Y \) be an open map. 
+Show that if \( A \) is open in \( X \), then the map \( q: A \to p(A) \) obtained by restricting \( p \) is an open map.
+\begin{proof}
+    Clearly, $p(A) \subset Y$ is open. Consider any open $U \subset A$.
+    Then $A \subset X$ being open implies $U \subset X$ is open.
+    Then $p(U) \subset Y$ is open. Since $p(U) \subset p(A)$, $p(U) \cap p(A) \subset p(A)$
+    is open.
+\end{proof}
+\section{Section 23}
+\subsubsection*{Question 1.} Let \( X \) be a set, and let \( \mathcal{T} \) and \( \mathcal{T}' \) be two 
+topologies on \( X \). If \( \mathcal{T}' \supset \mathcal{T} \), then the connectedness of \( X \) in one topology implies connectedness in the other.
+
+\begin{proof}
+    Suppose $(X, \mathcal{T'})$ is connected. Then $(X, \mathcal{T})$ is connected.
+\end{proof}
+\subsubsection*{Question 2.} Let \( \{ A_n \} \) be a sequence of connected subspaces 
+of \( X \), such that \( A_n \cap A_{n+1} \neq \emptyset \) for all \( n \). Show that \( \bigcup_{n} A_n \) is connected.
+\begin{proof}
+    Suppose $\bigcup_n A_n$ is disconnected. Then there exists open disjoint 
+    $U, V$ whose union is $\bigcup_n A_n$. Since each $A_n$ is connected, then
+    each $A_n$ either belongs to $U$, or $V$. Suppose $A_1 \subset U$. Then $A_2 \subset U$
+    and by induction, all $A_n \subset U$. Then, $V = \emptyset$, a contradiction.  
+\end{proof}
+\subsubsection*{Question 3.} Let \( \{ A_{\alpha} \} \) be a collection of connected 
+subspaces of \( X \); let \( A \) be a connected subspace of \( X \). Show that if \( A \cap A_{\alpha} \neq \emptyset \) for all \( \alpha \), then \( A \cup \left( \bigcup_{\alpha} A_{\alpha} \right) \) is connected.
+\begin{proof}
+    Assume $B = A \cup (\bigcup_\alpha A_\alpha)$ is disconnected.
+    Then there exists $U, V$, nonempty, open and disjoint whose union is $B$.
+    Since $A$ is connected, assume $A \subset U$. Then for each $A_\alpha$, since $A 
+    \cap A_\alpha \ne \emptyset$, $A_\alpha \subset U$, leaving $V$ empty, a contradiction.
+\end{proof}
+\subsubsection*{Question 4.} Show that if $X$ is an infinite set, it is connected in the cofinite topology.
+\begin{proof}
+    Let $U, V$ be nonempty open sets in $X$ such that $U \cup V = X$. Then $U = X \setminus F_1, V = X \setminus F_2$
+    for finite sets $F_1, F_2$. Since $X$ is infinite, these sets cannot be disjoint.
+    Alternatively, if $U = X \setminus F$ is open, then $F$ is finite and hence cannot also be open. Then, the
+    only open and closed sets are $\emptyset$ and $X$.
+\end{proof}
+\subsubsection*{Question 5.} A space is totally disconnected if its only connected subspaces are one-point sets. 
+Show that if $X$ has the discrete topology, then $X$ is totally disconnected. 
+Does the converse hold?
+\begin{proof}
+    In the discrete topology, all singletons are open and closed.
+    Let $U \subset X$ be open and $|U| > 1$. Then $U \setminus \{x\}$ and $\{x\}$
+    form a separation of $U$. The converse is not true, since $\mathbb{Q} \subset \mathbb{R}$ 
+    is totally disconnected.
+
+    For any $(a, b) \in \mathbb{Q}$ with $a < b$, there exists $c \in \mathbb{R} \setminus \mathbb{Q}$ with 
+    $a < c < b$. Then, $(a, c) \cup (c, b)$ form a separation of $(a, b)$
+\end{proof}
+\subsubsection*{Question 6.} Let \( A \subset X \). Show that if \( C \) is a connected 
+subspace of \( X \) that intersects both \( A \) and \( X \setminus A \), 
+then \( C \) intersects \( \delta A \).
+\begin{proof}
+    Suppose otherwise that $C$ does not intersect $\delta A$. Note that 
+    $\overline{A} = \overset{\circ}{A} \cup \delta A$ and 
+    $\delta A = \overline{A} \setminus \overset{\circ}{A}$.
+    such that $\delta{A}$ and $\overset{\circ}{A}$ are disjoint.
+    Then $C \cap \delta{A}$
+    and $C \cap \overset{\circ}{A}$ form a separation of $C$.
+\end{proof}
+
+\subsubsection*{Question 8.} $\mathbb{R}^\omega$ is not connected
+in the uniform topology.
+\begin{proof}
+    Consider the set $A$ of all bounded sequences 
+    and $B$ of all unbounded sequences. Clearly, they are disjoint and nonempty. 
+    Furthermore 
+    $A \cup B = \mathbb{R}^\omega$.
+    Let $a  = \{a_n\}_{n=1}^\infty$. 
+    Suppose $a \in A$.
+    To show $A$ is open, 
+    consider the open set containing $a$,
+    $U = (a_1 - 1, a_1 + 1) \times (a_2 - 1, a_2 + 1) \times ...$.
+    (This is the open ball $B_{1/2}^{\overline{\rho}}(a)$).
+    Since $a$ is bounded, $U$ only contains bounded sequences
+    and so it is contained in $A$. This shows $A$ is open.
+    Suppose $a \in B$.
+    Then $a$ is unbounded, and $U$ only contains unbounded sequences
+    and is contained in $B$. This shows $B$ is open.
+
+
+\end{proof}
+
+
+
+\begin{remark}
+    The set $\mathcal{C}(X, 
+    Y) = \{f \in Y^X: f \text{ is continuous}\}$ is
+    closed because, for any sequence 
+    $f_n \in (\mathcal{C}(X, Y), \overline{\rho})$ that 
+    converges in the uniform topology,
+    it converges uniformly. This sequence exists due to the metrizability
+    of the set.
+    Then, by the uniform limit theorem, $f_n \rightarrow f$
+    and $f \in \mathcal{C}(X, 
+    Y)$. Then $\mathcal{C}(X, Y) = \overline{\mathcal{C}(X, Y)}$ 
+    and it is closed. 
+
+    \begin{itemize}
+        \item $\mathcal{B}(X, Y)$ is closed.
+        $\mathcal{B}(X, Y)$ is metrizable and we can
+        find a sequence $f_n \in \mathcal{B}(X, Y)$ such that $f_n \rightarrow f \in 
+        \overline{\mathcal{B}(X, Y)}$.
+        Let $N \in \mathbb{Z}^+$ such that $\overline{\rho}(f_N, f) < \frac{1}{2}$,
+        then $\frac{1}{2}d(f_N(x), f(x)) \leq \rho(f_N(x), f(x)) < \frac{1}{2}$ 
+        for all $x \in X$ and therefore $d(f_N(x), f(x)) < 1$. Then 
+        for any $a, b \in X$, $$d(f(a), f(b)) \leq d(f(a), f_N(a)) + 
+        d(f_N(a), f_N(b)) + d(f(b), f_N(b))$$
+        By taking sup over $a, b \in X$, 
+        $\mathrm{diam}(f) \leq 1 + \mathrm{diam}(f_N) + 1 < \infty$.
+        Then $f \in \mathcal{B}(X, Y)$ and thus it is closed.
+        \item $\mathcal{B}(X, Y)$ is open. Let $g \in \mathcal{B}(X, Y)$.
+        Take a ball $B_{1/2}(g) = \{f \in Y^X \mid \overline{\rho}(f, g) < 1/2\}$.
+        Then for all $f \in B_{1/2}(g)$, for all $x \in X$, $\frac{1}{2}d(f(x), g(x)) 
+        \leq \rho(f(x), g(x)) < \frac{1}{2}$ and $d(f(x), g(x)) < 1$. Then 
+        by the previous point, $f$ is bounded and $B_{1/2}(g) \subset \mathcal{B}(X, Y)$.
+    \end{itemize}
+\end{remark}
+
+\subsubsection*{Question 9.} Let \( A \) be a proper subset of \( X \), and let \( B \) 
+be a proper subset of \( Y \). If \( X \) and \( Y \) are connected, 
+show that \( (X \times Y) - (A \times B) \) is connected.
+\begin{proof}
+    Suppose on the contrary there exists a 
+    separation in $(X \times Y) \setminus (A \times B)$, $U, V \subset (X \times Y) \setminus (A \times B)$.
+    Under the subspace topology, let $C \times D, E \times F$ be open in $X \times Y$ and 
+    $U = (C \times D) \setminus (A \times B)$, $V = (E \times F) \setminus (A \times B)$.
+    Then $U \sqcup V = (X \times Y) \setminus (A \times B)$ implies $E \times F \sqcup C \times D = X \times Y$,
+    a contradiction, because $X \times Y$ is connected.
+
+\end{proof}
+
+% \subsubsection*{Question 10.} 
+% Let \(\{X_\alpha\}_{\alpha \in J}\) be an indexed family of connected spaces; let \(X\) be the product space
+% \[
+% X = \prod_{\alpha \in J} X_\alpha.
+% \]
+% Let \(\mathbf{a} = (a_\alpha)\) be a fixed point of \(X\).
+
+% \begin{enumerate}
+%     \item[(a)] Given any finite subset \(K\) of \(J\), let \(X_K\) denote the subspace of \(X\) consisting of all points \(\mathbf{x} = (x_\alpha)\) such that \(x_\alpha = a_\alpha\) for \(\alpha \notin K\). Show that \(X_K\) is connected.
+%     \item[(b)] Show that the union \(Y\) of the spaces \(X_K\) is connected.
+%     \item[(c)] Show that \(X\) equals the closure of \(Y\); conclude that \(X\) is connected.
+% \end{enumerate}
+
+\subsubsection*{Question 11.} Let \( p : X \to Y \) be a quotient map. 
+Show that if each set \( p^{-1}(\{y\}) \) is connected, and 
+if \( Y \) is connected, then \( X \) is connected.
+
+\begin{proof}
+    Suppose $U, V$ form a separation of $X$. Since $p^{-1}(\{y\}) \subset X$
+    is connected, for all $y \in Y$,  $p^{-1}(\{y\})$ is either in $U$ or $V$.
+    For some subset $S, T \subset Y$, $U = p^{-1}(S)$, $V = p^{-1}(T)$.
+    Then $V$, $U$ are saturated open sets w.r.t $p$. Then $p$ maps $U$ and $V$
+    to open, sets, $W, A \subset Y$. Since $U, V$ are disjoint, $W, A$ are disjoint,
+    a contradiction.
+\end{proof}
+
+% \subsubsection*{Question 12.}
+% Let \( Y \subset X \); let \( X \) and \( Y \) be connected. 
+% Show that if \( A \) and \( B \) form a separation of \( X \setminus Y \), 
+% then \( Y \cup A \) and \( Y \cup B \) are connected.
+
+% \begin{proof}
+%     Suppose $Y \cup A$ is disconnected, where there is a separation
+%     $U, V$ of $Y \cup A$. The connected subset $Y \subset U$ or $Y \subset V$.
+%     Suppose it is in $U$. Since $Y \cup A = U \cup V$, then $V \subset A$.
+
+
+% \end{proof}
+
+\section{Section 24}
+\subsubsection*{Question 1a.}
+Show that no two of the spaces $(0, 1), (0, 1]$, and 
+$[0, 1]$ are homeomorphic.
+
+\begin{proof}
+    Suppose there exists a homeomorphism from $(0, 1]$ to $[0, 1]$.
+    $[0, 1] \subset \mathbb{R}$ is compact by the Heine-Borel theorem,
+    however $(0, 1]$ is not, since it is not closed. However $h^{-1}([0, 1])$ 
+    is a homeomorphism that preserves compactness.
+    A similar proof can be shown between $(0, 1)$ and $[0, 1]$.
+    Lastly, consider $(0, 1)$ and $(0, 1]$.
+    Let $x \in (0, 1)$ such that $h(x) = 1 \in (0, 1]$.
+    Then $(0, 1) \subset (0, 1]$ is connected, implying $h^{-1}((0, 1)) = 
+    (0, 1) \setminus \{x\}$ should be connected
+    (by continuity of $h^{-1}$). However, $(0, x) \cup (x, 1)$
+    is not connected.
+\end{proof}
+\subsubsection*{Question 1b.} Suppose that there exist imbeddings $f : X \rightarrow Y$ and $g : Y \rightarrow X$.
+Show by
+means of an example that $X$ and $Y$ need not be homeomorphic.
+$f$ is a topological imbedding if $f$ is a homeomorphism onto its image.
+\begin{proof}
+    $f : (0, 1) \rightarrow (0, 1]$,  $x \mapsto x$ is a homeomorphism to its image.
+    $g: (0, 1] \rightarrow (0, 1)$, $y \mapsto y/2$ is a homeomorphism onto its image,
+    $g((0, 1]) = (0, 1/2]$.
+    These spaces are not homeomorphic.
+\end{proof}
+
+\begin{remark}
+    If $f:X \rightarrow Y$
+        is a homeomorphism, then $f|_U:U \rightarrow f(U)$
+        is a homeomorphism for any $U \subset X$.
+
+    The restriction $g: U \rightarrow Y$, $x \mapsto f|_U(x)$
+    is continuous. By definition $f^{-1}$ is a homeomorphism 
+    so $g^{-1} = f^{-1}|_{f(U)}: f(U) \rightarrow X$ is continuous. 
+    $g^{-1} \circ g $ and $g \circ g^{-1}$ are the identity maps.  
+
+\end{remark}
+\subsubsection*{Question 1c.} Show $\mathbb{R}^n$ and $\mathbb{R}$ are not homeomorphic with $n > 1$.
+
+\begin{proof}
+    Suppose there exists a homeomorphism $h: \mathbb{R} \rightarrow \mathbb{R}^n$.
+    Then $f: \mathbb{R} \setminus \{x\} \rightarrow \mathbb{R}^n \setminus \{h(x)\}$
+    is a homeomorphism. However, $\mathbb{R} \setminus \{x\}$ is disconnected, 
+    while $\mathbb{R}^n \setminus \{h(x)\}$ is connected, because it is path connected.
+    Let $p_1, p_2$, where $p_i: [0, 1] \rightarrow \mathbb{R}^n$ be paths from $a$ to $b$,
+    $p_i(0) = a$, $p_i(1) = b$.
+    We may define $p_1(t) = a + t(b - a)$
+    We may define $$p_2(t) = \begin{cases}
+        a + 2t((0, 0, ..., b_n - a_n)) & t \leq 0.5\\
+        a + 2(t-0.5)(b_1-a_1, ..., 0) & t > 0.5\\ 
+    \end{cases}$$
+
+    Suppose $h(x)$ is on path $p_1$. Then $p_2$ is a path, ensuring that 
+    $\mathbb{R}^n \setminus \{h(x)\}$ is path connected and thus connected.
+    Then, this contradicts the assumption that there exists a homeomorphism $h$.
+\end{proof}
+
+\subsubsection*{Question 8a.} 
+Is a product of path-connected spaces necessarily path connected?
+\begin{proof}
+    Suppose $X_\alpha$ is path connected for all $\alpha \in \Lambda$.
+Let $X = \prod_{\alpha \in \Lambda} X_\alpha$. Get two points $\mathbf{p}, \mathbf{q} \in X$. 
+Let $t \in [0, 1]$
+and let $f_\alpha(0) = \mathbf{p}_\alpha$, $f_\alpha(1) = \mathbf{q}_\alpha$ be a 
+continuous function $f_\alpha: [0, 1] \rightarrow X_\alpha$, since $X_\alpha$
+is path-connected. Under the product topology, $f(t) = (f_\alpha(t))_{\alpha \in \Lambda}$
+is continuous and a path from $\mathbf{p}$ to $\mathbf{q}$.
+\end{proof}
+
+\begin{remark}
+    Suppose each coordinate function $\alpha \in \Lambda$
+    is continuous. Under $f = (f_\alpha)_{\alpha \in \Lambda}$
+    with $f_\alpha = \pi_\alpha \circ f$ (this is continuous), the inverse image of the subbasis element
+    $\pi_\alpha^{-1}(U_\alpha)$ given by $f^{-1}(\pi_\alpha^{-1}(U_\alpha))$ is 
+    $(\pi_\alpha \circ f)^{-1}(U_\alpha)$, which is open.
+\end{remark}
+
+\subsubsection*{Question 8b.}
+If $A \subset X$ and $A$ is path connected, is $\overline{A}$ necessarily 
+path connected?
+\begin{proof}
+    No. Refer to topologist's sine curve, where $S$ is path connected and $\overline{S}$
+    is not path connected.
+\end{proof}
+
+\subsubsection*{Question 8c.}
+If $f : X \rightarrow Y$ is continuous and $X$ is
+path connected, is $f(X)$ necessarily
+path connected?
+\begin{proof}
+    Let $p: [0, 1] \rightarrow X$ be a path in $X$.
+    Then $f \circ p: [0, 1] \rightarrow f(X)$ is a path in $f(X)$.
+    It is continuous by a composition of continuous functions.
+\end{proof}
+
+\subsubsection*{Question 8d.}
+If $\{A_{\alpha}\}$ is a collection of path-connected
+subspaces of $X$ and if $\bigcap A_{\alpha} \neq \emptyset$, 
+$\bigcup A_{\alpha}$ is also necessarily path connected.
+
+\begin{proof}
+    Let $x \in \bigcap A_\alpha$ and choose a point 
+    $y_\alpha \in A_\alpha$.
+    Let $p_\alpha$ be a path, 
+    $p_\alpha: [0, 1] \rightarrow A_\alpha$ from 
+    $y_\alpha$ to $x$ with $p_\alpha(0) = y_\alpha$ and 
+    $p_\alpha(1) = x$. There also exists a path 
+    $p_\beta: [1, 2] \rightarrow A_\beta$ with 
+    $p_\beta(1) = x$ and $p_\beta(2) = y_\beta \in A_\beta$.
+    By pasting lemma, there exists the path 
+    $p: [0, 2] \rightarrow \bigcup_{\alpha} A_\alpha$, where 
+    $$p(t) = \begin{cases}
+        p_\alpha(t) & t \leq 1\\
+        p_\beta(t) & t > 1
+    \end{cases}$$
+
+\end{proof}
+
+Question 9. Assume that $\mathbb{R}$ is uncountable. Show that if $A$ is a countable subset of 
+$\mathbb{R}^2$, then $\mathbb{R}^2 \setminus A$ is path-connected. 
+\textbf{Hint:} How many lines are there passing through a given point of $\mathbb{R}^2$? 
+
+\begin{proof}
+    If $A \subset \mathbb{R}^2$ is countable,
+    let $(x, y) \in \mathbb{R}^2$. There is an uncountably infinite
+    number of lines passing through $(x, y)$. Then that means
+    there are uncountable number of lines not intersecting $A$.
+    Also, for any pair of points, there is a pair of lines that intersect each other
+    but do not intersect $A$, showing that the lines are connected at the intersection.
+\end{proof}
+
+\subsubsection*{Question 11.}
+If $A$ is a connected subspace of $X$, does it follow that
+$\overset{\circ}{A}$ and $\delta A$ are connected? 
+Does the converse hold? Justify your answers.
+
+\begin{proof}
+    No. $(0, 1) \subset \mathbb{R}$ is connected but its boundary,
+    $\{0, 1\}$ is disconnected. The open balls $B_1(0, 0) \cup B_1(2, 0)$
+    are disconnected but the boundary is connected. For the converse,
+    let $\mathbb{Q}$ be a disconnected subspace of $\mathbb{R}$.
+    The closure of $\mathbb{Q}$ is $\mathbb{R}$. The interior of $\mathbb{Q}$
+    is $\emptyset$. Consider any open $(a, b) \subset \mathbb{R}$
+    with $b > a$. Then $(a, b)$ contains an irrational number. So 
+    
+    $$\bigcup_{U \in \mathcal{T}, U \subset \mathbb{Q}} U$$ is empty and hence connected.
+    Then the boundary of $\mathbb{Q}$ is $\mathbb{R}$ itself, which is connected.
+\end{proof}
+\begin{remark}
+    Let $(X, \mathcal{T})$ be a topological space and $A \subset X$.
+\begin{enumerate}
+    \item The \textit{interior} of $A$ is $\mathring{A} = \bigcup_{U \in \mathcal{T}, \, U \subset A} U$.
+    \item The \textit{closure} of $A$ is $\overline{A} = \bigcap_{G \in \mathcal{T}, \, G \supset A} G$.
+    \item The \textit{boundary} of $A$ is $\partial A = \overline{A} - \mathring{A}$.
+\end{enumerate}
+\end{remark}
+
+\section{Section 25}
+\subsubsection*{Question 2a.}
+The connected components and path components 
+of 
+$\mathbb{R}^\omega$ (in the product topology)
+are itself.
+\begin{proof}
+    $\mathbb{R}^\omega$ is connected so it is the connected component.
+    (Munkres p. 151 Example 7)
+    $\mathbb{R}^\omega$ is also path connected. Using 
+    $\mathbb{R}$ the path connectedness of $\mathbb{R}$,
+    let $a, b \in \mathbb{R}^\omega$. Then there exists a path 
+    $p_n: [0, 1] \rightarrow \mathbb{R}$ from $a_n$ to $b_n$.
+    Since each $p_n$ is continuous for $n \in \mathbb{N}$,
+    let $p: [0, 1] \rightarrow \mathbb{R}^\omega$ be defined as 
+    $x \mapsto (p_n(x))_{n \in \mathbb{N}}$. Under the product topology,
+    each $p_n$ is continuous (as a path) implies
+    $p$ is continuous and is a path from $a$ to $b$.
+
+\end{proof}
+\subsubsection*{Question 2b.} Consider 
+$\mathbb{R}^\omega$ under the uniform topology.
+Show that $\mathbf{x}$ and $\mathbf{y}$
+lie in the same connected component of $\mathbb{R}^\omega$
+iff the sequence
+$\mathbf{x} - \mathbf{y}$ is bounded.
+Hint: It suffices to consider the case where $\mathbf{y} = 0$
+\begin{proof}
+    Suppose $\mathbf{x} - \mathbf{y}$ is bounded. This direction is clear.
+    Then there exists some path $p_n: [0, 1] \rightarrow \mathbb{R}$
+    from $\mathbf{x}_n$ to $\mathbf{y}_n$. Since the 
+    projection map $\pi_n$ is continuous 
+    (due to being finer than the product topology),
+    let $p = (p_n)_{n \in \mathbb{N}}$, then let $U_n \subset \mathbb{R} (= X_n)$
+    if $\pi_n^{-1}(U_n) \subset \mathbb{R}^\omega$ is an open subbasis element, 
+    $p^{-1}(\pi_n^{-1}(U_n)) = (\pi_n \circ p)^{-1}(U_n) = p_n^{-1}(U_n) $
+    is open, and hence $p$ is continuous and a path $[0, 1] \rightarrow \mathbb{R}^\omega$.
+    Then they lie in some path connected component, which lies in some connected component.
+    Suppose $\mathbf{x}, \mathbf{y}$ lie in the same connected component.
+    Consider the case where $\mathbf{y} = 0$ and $\mathbf{x}$ diverges.
+    Note that $\mathbf{y} \in \mathcal{B}(\mathbb{N}, \mathbb{R})$,
+    but $\mathbf{x} \notin \mathcal{B}(\mathbb{N}, \mathbb{R})$.
+    Since $\mathcal{B}(\mathbb{N}, \mathbb{R})$ is both closed and open,
+    $\mathcal{B}(\mathbb{N}, \mathbb{R})$ and its complement are a separation
+    of $\mathbb{R}^\omega$
+    and hence $\mathbf{y}$ and $\mathbf{x}$ cannot be 
+    part of the same connected component, which is a contradiction.
+\end{proof}
+
+% \subsubsection*{Question 2c.}
+% Give \( \mathbb{R}^\omega \) the box topology. Show that \( \mathbf{x} \) and 
+% \( \mathbf{y} \) lie in the same component of \( \mathbb{R}^\omega \) if and only if the 
+% sequence \( \mathbf{x - y} \) is \textit{eventually zero}.
+% \textit{Hint:} If \( \mathbf{x - y} \) is not eventually zero, 
+% show there is a homeomorphism \( h \) of \( \mathbb{R}^\omega \) with 
+% itself such that \( h(\mathbf{x}) \) is bounded and \( h(\mathbf{y}) \) is unbounded.
+
+% \begin{proof}
+    
+% \end{proof}
+
+\subsubsection*{Question 4.}
+Let $X$ be locally path connected. Show that every connected open set 
+in $X$ is path connected.
+\begin{proof}
+    If $X$ is locally path connected, 
+    each path component is a connected component and vice versa.
+    Then every connected open set in $X$ lies in a connected component $C$,
+    which is a path connected component. Them $X$ is also path connected as 
+    it lies in a path connected component. 
+    
+\end{proof}
+
+\subsubsection*{Question 8.}
+Let \( p : X \to Y \) be a quotient map. Show that if 
+\( X \) is locally connected, then \( Y \)
+is locally connected. [Hint: If \( C \) is a component of 
+the open set \( U \) of \( Y \), show
+that \( p^{-1}(C) \) is a union of components 
+of \( p^{-1}(U) \).]
+
+\begin{proof}
+    Since $X$ is locally connected, for every open 
+    $V \subset X$, all connected
+    components of $V$ are open in $X$.
+    Let $C$ be a connected component of open set $U \subset Y$,
+    with $C \subset U \subset Y$.
+    Then $p^{-1}(C) \subset p^{-1}(U)$ and $p^{-1}(U) \subset X$
+    is open. Consider a connected component containing $x$
+    $S \subset p^{-1}(U)$ noting that $p(S)$ is also connected by continuity of $p$.
+    Then $x \in p^{-1}(C) \cap S$ and so $p(x) \in C \cap p(S)$.
+    Since $p(S)$ must lie in a connected component, it lies in $C$.
+    
+
+\end{proof}
+\section{Section 26}
+\subsubsection*{Question 1a.}
+Let \( \mathcal{T} \) and \( \mathcal{T}' \) be two topologies 
+on the set \( X \), and suppose that \( \mathcal{T}' \supset \mathcal{T} \). 
+What does the compactness of \( X \) under one of these topologies imply about compactness under the other? 
+
+\begin{proof}
+    If $(X, \mathcal{T'})$ is compact, then $(X, \mathcal{T})$ is compact.
+\end{proof}
+
+\subsubsection*{Question 1b.}
+Show that if \( X \) is compact Hausdorff under both \( \mathcal{T} \) and 
+\( \mathcal{T}' \), then either \( \mathcal{T} = \mathcal{T}' \) or
+\( \mathcal{T} \) and \( \mathcal{T}' \) are not comparable.
+\begin{proof}
+    If $(X, \mathcal{T})$ is Hausdorff, then $(X, \mathcal{T}')$ is Hausdorff.
+\end{proof}
+
+\subsubsection*{Question 6.}
+Show that if \( f : X \to Y \) is continuous, where \( X \) is compact and 
+\( Y \) is Hausdorff, then \( f \) is a closed map (that is, \( f \) carries closed sets to closed sets).
+
+\begin{proof}
+    Let $B \subset X$ be closed.
+    Since $X$ is compact, $B$ is also compact.
+    Then $f(B) \subset Y$ is compact. As a result,
+    Since $Y$ is Hausdorff, $f(B)$ is also closed.
+\end{proof}
+
+\subsubsection*{Question 7.}
+Show that if $Y$ is compact, then the projection map
+$\pi_1: X \times Y \rightarrow X$ is a closed map.
+
+\begin{proof}
+    Let $B \subset X \times Y$ be closed. 
+    Let $A = \pi_1(B) \subset X$. Let 
+    $x_0 \in X \setminus A \subset X$ where this set is open.
+    Then for any $(x_0, y) \in X \times Y$, there exists an open
+    set in the product space $U_y \times V_y \ni (x_0, y)$.
+    Clearly, $V_y \supset Y$.
+    By compactness of $Y$, we may choose finitely many $V_y$ covering $Y$.
+    Then take $U_{y_i} \times V_{y_i}$, $i \in \{1,2,...,n\}$ to cover
+    $\{x_0\} \times Y$. We know from the openness of each $U_y \times V_y$
+    that $U_y \times V_y \subset X \setminus A$. Take $U = \bigcap_{i=1}^n U_{y_i}$ and 
+    $V = \bigcup_{i=1}^n V_{y_i} = Y$. Then $U \subset X$ is open. Let $U_{x_0} = U$.
+    Then $\bigcup_{x \in X \setminus A} U_x \subset X$ is open and 
+    $\bigcup_{x \in X \setminus A} U_x = X \setminus A$, so $A \subset X$ is closed.
+
+\end{proof}
+\subsubsection*{Question 8.} Closed graph theorem.
+If $f: X \rightarrow Y$ where $Y$ is compact Hausdorff.
+Then $f$ is continuous if and only if 
+\begin{equation*}
+    \Gamma_f = \{(x, f(x)) \mid x \in X\} \subset X \times Y  \text{ is closed.}
+\end{equation*}
+Hint: If $\Gamma_f$ is closed and $V$ is a neighbourhood of $f(x_0)$
+then the intersection of $G_f$ and $X \times (Y \setminus V)$ is closed. Apply Question 7.
+
+\begin{proof}
+    First, we show $\Gamma_f$ is closed $\implies f$ is continuous, then the converse.
+    \begin{itemize}
+        \item Suppose $\Gamma_f \subset X \times Y$ is closed. 
+        Let $B \subset Y$ be closed. Then $\Gamma_f \cap (X \times B)
+        = \{(x, f(x)) \mid f(x) \in B\} \subset Y$
+        is closed, since $(X \times B) = X \times (Y\setminus V) = (X \times Y) \setminus (X \times V)$
+        for some open $V$.
+        \item Note that $C = \Gamma_f \cap (X \times B) = \{(x, f(x)) \mid f(x) \in B\}$.
+        Then $\pi_X(C) = \{x \mid f(x) \in B\} = f^{-1}(B)$ is closed, by the previous question.
+    \end{itemize}
+    This proves $\implies$. Now to show the converse $\impliedby$.
+    \begin{itemize}
+        \item Suppose $f$ is continuous. Let $(x, y) \in \overline{\Gamma_f}$
+        and $(x, f(x)) \in \Gamma_f$ where $y \ne f(x)$, which is the assumption that $\Gamma_f$ is not closed.
+        By Hausdorffness, there exists $U, V$ disjoint and open containing $y$ 
+        and $f(x)$ respectively. 
+        \item By continuity of $f$, there exists an open $W \ni x$ with $f(W) \subset V$. 
+        \item Then $W \times U$ and $W \times V$
+        are disjoint open sets containing $(x, y)$ and $(x, f(x))$.
+        \item By continuity of $f$, since (x, y) is in the closure of $\Gamma_f$,
+        $W \times U$ intersects $\Gamma_f$.
+        \item Then there exists $(w, f(w))$ in the intersection, $(w, f(w)) \in W \times U$,
+        where $w \in W$.
+        \item But $f(w) \in V$, a contradiction.
+    \end{itemize}
+\end{proof}
+
+\section{Section 28}
+\subsubsection*{Question 1.}
+Give $[0, 1]^\omega$ the uniform topology.
+Find an infinite subset that has no limit point.
+
+\begin{proof}
+    $X = [0, 1]^\omega$ is not limit point compact.
+    Let $A = \{\mathbf{e}_i \mid i \in \mathbb{N}\} \subset X$.
+    This is an infinite set. Note that any $x \in X$ is not a limit point of 
+    $A$, since the open ball containing $x$, with radius $r/2$, contains all
+    $y$ with
+    $$\overline{\rho}(y, x) < r/2 \implies \forall n,  d(x_n, y_n) < r$$ 
+    Then we can choose $r$ small enough, if $x \in X \setminus A$, and if $r < 1$ if $x \in A$,
+    these balls do not intersect $A \setminus \{x\}$.
+\end{proof}
+
+\subsubsection*{Question 3.}
+Let $X$ be limit point compact.
+If $A \subset X$ is closed, is $A$ limit point compact?
+
+\begin{proof}
+    If $A = A \cup A'$ (it is closed), any infinite subset $B \subset A$
+    will have limit points $B' \subset A' \subset A$.
+    (Any limit point of $B$ is also a limit point of $A$)
+\end{proof}
+\begin{remark}
+    Let $x \in B'$ be a limit point of $B \subset A$.
+    Then for all open $U \subset X$, 
+    $U \cap B \setminus \{x\} \ne \emptyset$. This implies 
+    $x$ is a limit point of $A$, since $B \subset A$.
+\end{remark}
+
+\section{Section 29}
+\subsubsection*{Question 1.} Show the rationals are not locally compact
+\begin{proof}
+    Since the rationals are dense in $\mathbb{R}$,
+    let $(a, b) \cap \mathbb{Q}$ contain $x \in \mathbb{Q}$.
+    Let $C \supset (a, b) \cap \mathbb{Q}$. It is not compact because 
+    it is not sequentially compact. We may construct a sequence in 
+    $(a, b) \cap \mathbb{Q}$ (which is in $C$) converging to 
+    $p \in \mathbb{R}\setminus \mathbb{Q}$. Then the subsequence also converges 
+    to $p \in \mathbb{R}\setminus \mathbb{Q}$. For instance, let $c$ be an 
+    irrational number in $(a, b)$.
+    $x_n \in (c - 1/n, c) \cap \mathbb{Q}$ and the sequence converges to $c \in \mathbb{R} 
+    \setminus \mathbb{Q}$.
+
+\end{proof}
+
+\begin{remark}
+    $\mathbb{R}^\omega$ equipped with the product topology is not locally compact.
+    The product topology is metrizable. Let $\Lambda$ be a finite set.
+    Take any basic open element
+    $$U  = \prod_{n \in \Lambda} (a_n, b_n) 
+    \times \prod_{n \in \mathbb{N}\setminus  \Lambda} \mathbb{R}$$
+    Let $C \supset U$. We show that $C$
+    is not sequentially compact and therefore is not compact.
+    Consider the sequence $(x_i)_{i=1}^\infty \in U \subset C$,
+    where $\pi_k(x_i) \in (a_i, b_i) $ for all $k \in \Lambda$ and $\pi_k(x_i) = i$
+    if $k \notin \Lambda$. Then, each $x_i$ is in $U \subset C$,
+    but the sequence $x_n$ does not have a convergent subseqeuence.
+
+\end{remark}
+
+\subsubsection*{Question 2a.}
+Let $\{X_\alpha\}$ be an indexed family of nonempty spaces.
+\begin{itemize}
+    \item[(a)] Show that if $\prod_{\alpha \in \Lambda} X_\alpha$ is locally compact, then each $X_\alpha$ is locally compact and $X_\alpha$ is compact for all but finitely many values of $\alpha$.
+    \item[(b)] Prove the converse, assuming the Tychonoff theorem.
+\end{itemize}
+
+\begin{proof} (a).
+        Let $X = \prod_{\alpha \in \Lambda} X_\alpha$ be locally compact.
+        Then for any basic open element 
+        $$U  = \prod_{\alpha \in F} U_\alpha
+    \times \prod_{\alpha \in \Lambda\setminus F} X_\alpha$$
+    containing $\mathbf{x} = (x_\alpha)_{\alpha \in \Lambda}$
+    there exists a compact $C \supset U$ containing $\mathbf{x}$.
+    % Let $\{V_1, V_2, ... V_n\}$ be a finite collection of open sets in $X$ that cover 
+    % $C$, chosen from any arbitrary covering of $C$.
+    Let $U_\alpha \subset X_\alpha$ be open and contain $x_\alpha$.
+    Then $\pi_\alpha(C) \supset U_\alpha$ and is compact. Compactness is preserved
+    due to the continuity of the projection map, which is preserved in the product topology.
+    Furthermore, for all $\alpha \in \Lambda \setminus F$, 
+    $\pi_\alpha(C) = X_\alpha$ and therefore $X_\alpha$ is compact for $\alpha \in \Lambda \setminus F$.
+   
+    (b). Let $X_\alpha$ be compact for all $\alpha \in \Lambda \setminus F$ and each
+    $X_\alpha$ locally compact. Again, $F$ is an arbitrary finite set. 
+    Let $Y = \prod_{\alpha \in \Lambda \setminus F} X_\alpha$.
+    Then $Y$ is compact by Tychonoff's theorem. $X = \prod_{\alpha \in F} X_\alpha \times Y$. Now consider any basic 
+    open element $U \subset X$, as seen in the proof in (a). 
+    By local compactness of each $X_\alpha$, there exists a compact $C_\alpha \subset X_\alpha$
+    containing $U_\alpha$. $\prod_{\alpha \in F} C_\alpha \times Y$
+    (finite product of compact sets) is compact and contains $U$.
+\end{proof}
+
+\begin{remark}
+    A topological space X is \textit{compactly generated} if it
+satisfies either of the following equivalent conditions
+\begin{enumerate}
+    \item $A\subset X$ is open $\iff A\cap C$ is open in $C$ for every compact $C \subset X$
+    \item $B\subset X$ is closed $\iff B\cap C$ is closed in $C$ for every compact $C \subset X$
+\end{enumerate}
+For any closed set $B \subset X$,
+$A = X \setminus B$ is open. For any closed set $B$, $A = X \setminus B$ is open.
+Then, $A = X \setminus B$ is open $\iff A \cap C \subset C$ is open
+and $(X \setminus B) \cap C$ is open $\iff B \cap C \subset C$ is closed $\iff B$ is closed.
+
+\end{remark}
+
+\subsubsection*{Question 3.}
+Let $X$ be locally compact. If $f: X \rightarrow Y$
+is continuous, is $f(X)$ locally compact?
+\begin{proof}
+    Let $y \in f(X)$ and $U \subset f(X)$ be open. By continuity of $f$, 
+    $f^{-1}(U)$ is open in $X$ and contains $x$, and hence there exists a compact $C$
+    such that $x \in f^{-1}(U) \subset C$. Then, 
+    $f(x) \in U \subset f(C)$, where $f(C)$ is compact by continuity of $f$.
+
+\end{proof}
+
+\subsubsection*{Question 5.} If $f: X_1 \rightarrow X_2$ is a homeomorphism
+of locally compact Hausdorff spaces, then show $f$ extends to 
+a homeomorphism of their one point compactifications.
+
+\begin{proof}
+    Note that since $f$ is a homeomorphism from $X_1$ to 
+    $X_2$, consider the topologies of their one point compactifications,
+    $\mathcal{A}_1 \cup \mathcal{A}_2$ of $X_1 \cup \{\infty_1\}$
+    and $\mathcal{B}_1 \cup \mathcal{B}_2$ of $X_1 \cup \{\infty_2\}$.
+    $$\mathcal{A}_1 = \{U \subset Y_1 \mid U \subset X_1 \text{ is open}\}$$
+    $$\mathcal{A}_2 = \{Y_1 \setminus C \mid C \subset X_1 \text{ is compact}\}$$
+    Extend $f$ by letting $f(\infty_1) = \infty_2$.
+    Then, since $f$ is a homeomorphism, $U \subset X_1$ is open $\iff f(U) \subset X_2$
+    is open, and $C \subset X_1$ is compact $\iff f(C) \subset X_2$ is compact. The same could 
+    be said about its inverse.
+    Then, $\mathcal{A}_1 \cup \mathcal{A}_2$ is homeomorphic to $\mathcal{B}_1 \cup \mathcal{B}_2$
+    under $f$.
+    
+\end{proof}
+
+\section{Section 29}
+\subsubsection*{Question 7.}
+Every locally compact Hausdorff space is completely regular.
+\begin{proof}
+    Let $X$ be locally compact Hausdorff. Then there exists 
+    a compact Hausdorff $Y$, which is a one point compactification of 
+    $X$. Compact Hausdorff implies normality, which implies complete regularity.
+
+\end{proof}
+
+\subsubsection*{Question 8.} Let $X$ be completely regular, $A$, $B$, closed 
+disjoint subsets of $X$. If $A$ is compact, there is a continuous 
+function $f: X \rightarrow [0, 1]$ such that $f(A) = \{0\}$, $f(B) = \{1\}$.
+\begin{proof}
+
+    $X$ is regular, let $U, V$ separate $x$ and $B$. By compactness of $A$,
+    since $U$ is open, there exist open sets $U_x \subset U$ where $U_x$ contain $x$
+    and $V_x$ open, disjoint from $U_x$ and containing $B$.
+    Therefore this collection covers $A$. By compactness of $A$, 
+    we reduce this to a finite subcover of $A$, consisting of $U_{x_1}, ..., U_{x_n}$
+    The finite intersection of $V_{x_i}$ is still open and contains $x$. Therefore,
+    $U = \bigcup_{i=1}^n U_{x_i}$ contain $x$ and $V = \bigcap_{i=1}^n V_{x_i}$ contain $B$.
+    This shows $X$ is normal and by Urysohn's lemma, completely normal.
+
+\end{proof}
+
+
+\section{Biglist}
+Prove that $\mathbb{R}$ with the co-countable topology is
+not locally compact.
+
+\begin{proof}
+    Let
+    $U = \mathbb{R} \setminus \mathbb{Z}^+$ and $x \in U$.
+    Suppose $C \supset U$. Then $C = \mathbb{R} \setminus G$
+    with $G \subset \mathbb{Z}^+$. Then $C$ is not compact.
+    Since $G $ is countable, $\mathbb{R}\setminus G = C$ is uncountably infinite and thus cannot 
+    be compact, since the compact sets are finite.
+
+\end{proof}
+
+\begin{remark}
+    Let $X$ be uncountable, equipped with the co-countable topology.
+    Suppose $A$ is an infinite set. Then $A$ is not compact.
+    Let $A'$ be a countably infinite subset of $A$. Then $U_0 = X \setminus A'$
+    is open. In particular, let $\{U_0, U_1, ...\}$
+    be an open cover of $A$, where $$U_i = X \setminus (A' \setminus \{a_i\})$$
+    and $U_0 = X \setminus A'$.
+    Then $U_0$ covers $A \setminus A'$ and $U_i$ covers each $\{a_i\} \subset A'$.
+    There is no finite subcover.
+\end{remark}
+
+Let $D \subset \mathbb{R}^2$ be countable.
+Then $\mathbb{R}^2 \setminus D$ is connected.
+\begin{proof}
+     $\mathbb{R}^2 \setminus D$ is connected because it is path connected.
+     Choose any $(p, q) \in \mathbb{R}^2 \setminus D$.
+     There are uncountably infinite lines passing through $(p, q)$ and not intersecting $D$.
+     Choose these two lines $L_1$, $L_2$ not passing through a point in $D$,
+     and passing through $(p_1, q_1)$
+     and $(p_2, q_2)$ respectively.
+     They intersect at some other point $(p_3, q_3) \in \mathbb{R}^2 \setminus D$.
+     Then there exists a path $p: [0, 1] \rightarrow \mathbb{R}^2$
+     from $(p_1, q_1)$ to $(p_2, q_2)$. Clearly, $p$ is continuous, such that
+     $\mathbb{R}^2 \setminus D$ is path connected and hence connected.
+\end{proof}
+
+Show that $\mathbb{R}^\omega$ in the box topology is disconnected. What about 
+$\mathbb{R}^\omega$ under the uniform topology?
+
+
+\begin{proof}
+    Consider $A$, the set of all bounded sequences and $B$, the set
+of all unbounded sequences. Clearly, $A \sqcup B$. It remains to see if they are open.
+Consider an open set in the box topology that contains the sequence 
+$a = \{a_n\}_{n \in \mathbb{N}}$, given by $U_a = \prod_{n \in \mathbb{N}} (a_n - 1, a_n + 1)$.
+$a$ is bounded if and only if every sequence in $U_a$ is bounded.
+By considering $\bigcup_{a \in A} U_a = A$, we obtain the fact that $A$ is open.
+Similarly, $B$ is open. Then $A$ and $B$ form a separation of $\mathbb{R}^\omega$.
+\begin{remark}
+    Under the uniform topology, $U_a = \prod_{n \in \mathbb{N}} (a_n - 1, a_n + 1)$
+is also open (it is a uniform ball), so we may use the same argument.
+\end{remark}
+\end{proof}
+
+
+\section{Tutorials}
+\subsection{Problem 3}
+Let $X$ be equipped with the metric $d$.
+The subspace topology on $A \subset X$ is
+the discrete topology
+\begin{proof}
+    A basic open element in $A$ is 
+    $$B_{r}(x) = \{y \in A \mid d_A(x, y) < r\}$$
+    Since $A$ is finite, each $d(x, y) > \epsilon$
+    where $\epsilon = \min_y d(x, y) / 2$.
+    Then the singleton set $\{x\}$ is open.
+\end{proof}
+
+Let $\mathbb{R}$ be equipped with the standard
+topology. The subspace topology on 
+$A = \{\frac{1}{n} \mid n \in \mathbb{N}\} \subset \mathbb{R}$
+is the discrete topology. Show that the subspace topology on 
+$A' = \{0\} \cup \{\frac{1}{n} \mid n \in \mathbb{N}\} \subset \mathbb{R}$
+is NOT the discrete topology.
+\begin{proof}
+    All singleton sets are open if and only if it is the discrete topology.
+    \begin{itemize}
+        \item Take an open ball $A \cap (\frac{1}{n} - \epsilon, \frac{1}{n} + \epsilon)$
+        where $\epsilon < 1/2 (\frac{1}{n+1} - \frac{1}{n})$. 
+        Then the singleton set is open.
+        \item Take any open ball $(-\epsilon, \epsilon) \cap A'$ containing 0.
+        Then it always contains something else by the archimedean property.
+        This implies $\{0\}$ is not open.
+    \end{itemize}
+\end{proof}
+
+
+
+\end{document}

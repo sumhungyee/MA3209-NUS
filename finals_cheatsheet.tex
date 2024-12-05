@@ -1,0 +1,448 @@
+\documentclass[a4paper, landscape]{article}
+\input{default.tex}
+
+
+% Global setttings
+\def\subject{MA3209}
+\def\semester{AY 24/25 S1}
+\def\author{ME}
+\def\cols{4}
+
+\cheatsheet{
+    \fontsize{6}{7}
+    \section{General Topologies}
+    Definition: $\{x_n\}_{n \in \mathbb{N}}$ converges 
+    if for all open $U \ni x$, $\exists N$ st $x_k \in U$ $\forall k > N$.
+
+    Let $(X, \mathcal{T})$ be a topological space and $A \subset X$.
+    
+    $\mathring{A} = \bigcup_{U \in \mathcal{T}, \, U \subset A} U$ and $\bar{A} = \bigcap_{G \in \mathcal{T}, \, G \supset A} G$.
+  
+    
+    \subsection{Cofinite/Cocountable Topology}
+    Let $X$ be equipped with the cofinite topology.
+
+    
+    \begin{itemize}[left=0pt]
+        \item $X$ is $T_1$. $X$ is $T_2$ iff it is finite (discrete).
+        \item If $X$ is infinite, $X$ is NOT metrizable and NOT first countable (and not 2nd countable)
+    \end{itemize}
+    \begin{itemize}[left=0pt]
+        \item $\mathbb{R}$ with the cocountable topology is not compactly generated.
+        Only finite sets are compact. Intersect with a non-closed infinite set
+        to form a finite and hence countable and hence closed set.
+    \end{itemize}
+
+    \subsection{Discrete and Trivial Topologies}
+    Let $X$ be equipped with the discrete topology.
+    Then $X$ is $T_2$ and all $A \subset X$ have NO limit points.
+    
+    
+    \subsection{Product, Box Topologies}
+    \begin{itemize}[left=0pt]
+        \item The product of compact
+        spaces, equipped with the product topo, is compact (Tychonoff). Not true for box
+        topo.
+        \item Closed subset of $R^w$ (product space) NOT sequentially compact (let the infinite part diverge). 
+        Let $\overline{B} = \prod_{i \in \Lambda} [a_i, b_i] \times \prod_{i \in \mathbb{Z}^+ \setminus \Lambda} 
+        \mathbb{R}$ for finite $\Lambda$
+        \item Box topo not first countable (diagonalisation), not metrizable.
+        \item Product topo of metric spaces are equipped with metric $D(x,y)= \text{sup}\{\frac{1}{i}\rho(\pi_i(x),\pi_i(y)): i \in I\}$
+        \item $S(x, U) = \{f \mid f \in Y^X \text{ and } f(x) \in U\}$ is subbasis that generates product topo where $U \subset Y$ is open,
+        $x \in X$
+        \item $\mathbb{R}^\omega$ in the box topo is not connected: Let $a = \{a_n\}_{n \in \mathbb{N}} \in \mathbb{R}^\omega$. The open set 
+        $U = \prod_{i=1}^\infty (a_i - 1, a_i + 1)$ contains bounded sequences iff $a$ is a bounded sequence. Same idea for uniform topo.
+        \item $\mathbb{R}^\omega$ in the product topo is connected and complete
+    \end{itemize}
+    
+    
+    \subsubsection{Continuous Functions \& the Uniform Topology}
+    Definition: $(f_n)$ converges uniformly to $f$ if, given $\epsilon > 0$, $\exists N$ such that  for all $n > N$, $x \in X$, $d(f_n(x), f(x)) < \epsilon $ 
+    
+    Definition: $(f_n)$ converges pointwisely to $f$ if, given $\epsilon > 0$, for all $x \in X$,  $\exists N_x$ such that $d(f_n(x), f(x)) < \epsilon $ for $n > N_x$  
+
+    
+    \begin{itemize}[left=0pt]
+        \item $f: X\rightarrow (Y, d)$ is cont. iff for any $\epsilon$-ball $W \ni f(x)$, exists open $U$, $x \in U \subset X$, $f(U) \subset W$       
+        \item Let $(Y, d)$ be a metric space. $\rho = \frac{d}{1+d}$. The uniform metric on $Y^\Lambda$ is 
+        $\bar{\rho}(x, y) = \sup\{\rho(\pi_\alpha(x), \pi_\alpha(y)) \mid \alpha \in \Lambda\}$ and generates the uniform topo on \(Y^X\)
+        \item If $(Y, d)$ is complete (iff $(Y, \rho)$ is complete due to bi-lipschitzness), then
+        $(Y^\Lambda, \overline{\rho})$ is complete.
+        \item Alternatively, $Y^X = \{\text{maps from } X \rightarrow Y\}$ with $\overline{\rho}(f, g) = \sup\{\rho(f(\alpha), g(\alpha)), \alpha \in X\}$
+        \item $\mathcal{C}(X, Y) = \{f \in Y^X \mid f \text{ is continuous}\}$
+        \item $\mathcal{B}(X, Y) = \{f \in Y^X \mid f(X) \subset Y \text{ bounded diam}\}$
+        \item On $\mathcal{B}(X,Y)$, we use this metric: $d_{\text{sup}} = \text{sup}\{d(f(x),g(x)): x\in X\}$
+        \item $(Y,d) \text{ complete } \implies (\mathcal{B}(X,Y), d_{\text{sup}}) \text{ complete }$
+        \item (Refer to Complete Metric Spaces).  $(\mathcal{C}(X, Y), \overline{\rho}) \subset Y^X$ and $(\mathcal{B}(X, Y), \overline{\rho}) \subset Y^X$ are closed in uni topo on $Y^X$. If $(Y, d)$ is complete $\implies \mathcal{B}(X,Y) \text{ \& } \mathcal{C}(X,Y)$
+       complete.
+        \item Under uni topo, convergence of $f_n \rightarrow f \in Y^X \Leftrightarrow f_n \rightarrow f$ uniformly.
+        \item Uniform limit theorem: If $f_n: X \rightarrow Y$ is a sequence of continuous functions from $X$ (topo space) to $Y$ (metric space)
+        and converges uniformly to $f$, then $f$ is continuous.
+        \item If $f:X \rightarrow Y$
+        is a homeomorphism, then $f|_U:U \rightarrow f(U)$
+        is a homeomorphism for any $U \subset X$.
+        \item Homeomorphisms preserve $T_2$, compactness, connectedness).
+    \end{itemize}
+    
+    
+    \subsubsection{Summary}
+    \begin{itemize}[left=0pt]
+        \item The uniform topology is finer than the product topology but coarser than the box topology.
+        ($\pi_\alpha$ is continuous)
+        \item $U = \{(x_n)_{n \in \mathbb{N}} \mid \lvert x_n \rvert < 2^{-n} \forall n \in \mathbb{N}\}$ is
+        open in box but not uniform. Assume it contains a uniform ball with radius $\epsilon$. But $\forall n \in \mathbb{N}, x_n < 2^{-n} \implies \epsilon = 0$
+        \item $V = \{x \in \mathbb{R}^\mathbb{N} \mid \rho(x, 0) < 0.01\}$ is open in uniform but not in product.
+        Assume it contains a basic element $\prod_{i \in \Lambda} U_i \times \prod_{i \in \mathbb{N} \setminus \Lambda} \mathbb{R}$. Then it contains 
+        sets of the form $\{(x_n) \mid n \in \mathbb{N}, x_{n_1} = ... = x_{n_k} = 0\}$. Contradiction.
+    \end{itemize}
+
+    \subsection{Quotient Topologies}
+    Definition of Quotient map: $p:X \to Y$ is surjective AND $V \subset Y$ is open $\iff p^{-1}(V) \subset X$ is open.
+    
+    Definition: Let $f: X \rightarrow Y$ be surjective continuous and $A \subset X$. $A$ is saturated w.r.t $f$ if $A = f^{-1}(f(A))$ or
+        $A = f^{-1}(S)$ for $S \subset Y$
+    \begin{itemize}[left=0pt]
+        \item If $X$ is a topo space, let $X^*$ be the cells of a partition of $X$. Let $p: X \rightarrow X^*$
+        be surjective s.t. $x \mapsto [x]$. $X^*$ is a quotient space of $X$.
+        \item Let $X$ be a space, $A$ is a set, and $p: X \rightarrow A$ a surjective map. The quotient topo on A is the unique space s.t $p$ is a quotient map, i.e. $\mathcal{T} = \{U \subset A: p^{-1}(U) \subset X \text{ is open}\}$
+        \item A surjective continuous map $f$ is a quotient map $\iff$ $f$ maps every saturated open/closed sets to open/closed sets.
+        \item If a surjective continuous map $f$ is a quotient map, and $A \subset X$ is saturated and open/closed, then $f|_{A}: A \rightarrow f(A)$ is a quotient map. (Use prev statement
+        creating $B\subset A$ saturated w.r.t $f|_{A}$ and hence saturated with $f$)
+    \end{itemize}
+    
+
+    \subsection{Metrizable Topologies}
+    Let $X$ be metrizable for this section.
+    
+    Definition: $X$ is totally bounded if $\forall \epsilon > 0$,
+        $\exists $ a finite cover of $X$ by balls of radius $\epsilon$.
+    
+    Definition: A number $\delta > 0$ is a Lebesgue number for an open cover 
+    $\mathcal{U}$ if for all $S \subset X$ such that $diam(S) < \delta$,
+    $\exists U \in \mathcal{U}, S \subset U$
+    \begin{itemize}[left=0pt]
+        \item Every metrizable space is $T_4$
+        \item Finite sets in metric spaces are closed.
+        \item $X$ is first countable with countable basis 
+        $\{B_{1/i}(x), i \in \mathbb{Z}^+\}$ and \textbf{Hausdorff}
+        \item $X$ is compact $\iff X$ is sequentially compact $\iff X$
+        is limit point compact $\iff $ X is complete and totally bounded.
+        \item If $X$ is sequentially compact (and metrizable), $X$ is totally bounded.
+        \item If $X$ is totally bounded, it has finite diameter.
+        \item If $X$ is a sequentially compact metric space, every open cover of 
+        $X$ has a Lebesgue number (Pf by contradiction, create $S_n$, construct $x_n \in S_n$).
+    \end{itemize}
+    
+    
+    \subsubsection{Almost $\iff$}
+    \begin{itemize}[left=0pt]
+        \item Let $A \subset X$, $X$ is a topo space. If exists $(x_i)_{i=1}^\infty \subset A$ such that $x_i \rightarrow x$,
+        then $x \in \overline{A}$. The converse is true if $X$ is first countable.
+        \item If $f: X \rightarrow Y$ is continuous, then for any convergent $(x_i)_{i=1}^\infty \subset X$, $f(x_i) \rightarrow f(x)$. The converse 
+        is true if $X$ is first countable.
+            \item Definition: $X$ is Lindelof if every open cover has a countable subcover.
+            Suppose $X$ is 2nd countable (see countability). Then,
+            \begin{itemize}
+                \item  $X$ is Lindelof
+                \item There exists countable subset $A \subset X$ that is dense ($\overline{A} = X$)
+            \end{itemize}
+            Converse is true if $X$ is metrizable.
+    \end{itemize}
+
+    
+    \subsubsection{Complete Metric Spaces}
+    \begin{itemize}[left=0pt]
+        \item A Metric Space is complete if every Cauchy sequence converges.
+        \item A cauchy  sequence converges $\iff$ it has a convergent subsequence.
+        \item A subspace of a complete metric space is complete $\iff$ the subspace is closed. 
+        \item If $(X, d), (X', d')$ are bi-lipschitz, then $(X, d)$ totally bounded iff $(X', d')$ totally bounded,
+        and if $X = X'$, a sequence is cauchy in $(X, d)$ iff it is cauchy in $(X, d')$.
+        \item $(X,d) \text{ compact } \iff (X,d) \text{ complete \& totally bounded. }$ 
+        \item Completeness not preserved by homeomorphisms: $(-1, 1)$ is not complete (use a sequence converging to 1)
+        and $\mathbb{R}$ is complete (but homeomorphic)
+    \end{itemize}
+
+    \subsubsection{Isometry}
+    Definition: Let $X, Y$ be two metric spaces.
+    $f: (X, d_X) \rightarrow (Y, d_Y)$ is an isometric imbedding if for all $a, b \in X$,
+    $d_X(a, b) = d_Y(f(a), f(b))$. If $f$ is also surjective, then it is an isometry.
+
+    Definition: If $(X, d_X)$ is a metric space, a metric completion of $X$ is 
+    a complete metric space $(Y, d_Y)$ and an isometric imbedding $\phi: X \rightarrow Y$
+    such that $\overline{\phi(X)} = Y$
+    \begin{itemize}[left=0pt]
+        \item Every metric space $(X, d)$ has a unique metric completion:
+        There is an isometric imbedding $\phi$ of $X$ into a complete metric space $Y$
+        such that $\overline{\phi(X)} = Y$ (dense). Furthermore, if there is another metric completion
+        $Y'$ where $\phi'$ is the isometric imbedding, 
+        then there exists an isometry $f: Y \rightarrow Y'$ such that $f|_{\phi(X)} = \phi' \circ \phi^{-1}$
+    \end{itemize}
+    
+    \section{Compactness}
+    \begin{itemize}[left=0pt]
+        \item Compactness implies limit point compactness (converse false)
+        \item Sequential compactness implies limit point compactness.
+        (converse false)
+        \item  (Countereg to both converses) Consider $\mathbb{R}$ with the discrete topology and $Y = \{1, 2\}$ the 
+        trivial topology, then $\mathbb{R} \times Y$
+        is limit point compact but not sequentially compact/compact. The product topology on $X$ has open sets $A \times Y$ with $A \subset X$.
+        \item $X$ is compact is equivalent to: Let $ \mathcal{G}$ be a collection of closed sets in $X$ with fip 
+        (applies for all finite subcollection of $\mathcal{G}$).
+        Then $\bigcap_{G \in \mathcal{G}} \ne \emptyset$
+        \item X is compact \& $\{G_i\}_i$ is nested sequence of closed sets in X $\implies \bigcap^{\infty}_{i=1}G_i = \emptyset$
+    \end{itemize}
+    \subsection{Sequential and Limit Point Compactness}
+    Definition: $X$ is sequentially compact if every sequence HAS A convergent subsequence (in $X$).
+    
+    Definition: $X$ is limit point compact if every infinite $A \subset X$ has a limit point $x \in X$.
+    ($x \in X$ is a limit point of $A$ iff 
+        every open $U \subset X$ containing $x$ intersects $A \setminus \{x\}$)
+
+    \subsection{Local compactness}
+    Definition: $X$ is locally compact if for all $x\in X$, exists compact $C \subset X$,
+    open set $U \subset X$, $x \in U \subset C$.
+
+    If $X$ is Hausdorff, $X$ is locally compact iff: For any $x \in X$, 
+    for any open $U \subset X$ containing $x$, there exists open $V \subset X$
+    such that $x \in V$, $\overline{V} \subset U$. with $\overline{V}$ compact.
+    \begin{itemize}[left=0pt]
+        \item $\mathbb{R}^n$ is locally compact, take the closure of an open ball.
+        \item $\mathbb{Q} \subset \mathbb{R}$ not locally compact, 
+        use denseness to construct a sequence (see metric spaces)
+    \end{itemize}
+    \begin{itemize}[left=0pt]
+        \item Let $X$ be locally compact. If $A \subset X$ is closed, $A$ is locally compact.
+        \item Let $X$ be locally compact. If $A \subset X$ open and $X$ Hausdorff, $A$ is locally compact.
+    \end{itemize}
+
+    NOT locally compact list
+    \begin{itemize}[left=0pt]
+        \item $\mathbb{R}^\omega$ (infinite products): Pf by contradiction, see product topology.
+        \item $[0, 1] \cap \mathbb{Q}$ (infinitely locally disconnected)
+        \item $[0, 1] \subset \mathbb{R}_l$ (strictly finer than compact Hausdorff topology)
+        \item $\mathbb{R}$ with the cocountable topology.
+    \end{itemize}
+
+    \subsection{Compactly Generated}
+    \begin{itemize}[left=0pt]
+        \item Definition: $A \subset X$ is open $\impliedby A \cap C \subset C$ is open for every compact $C \subset X$.
+        \item If $X$ is locally compact or first countable, then it is compactly generated.
+        \item Let $X$ be compactly generated. $f: X \rightarrow Y$ is continuous iff for all compact
+        $C \subset X, f|_C$ is continuous.
+    \end{itemize}
+
+    \subsection{Compactification and friends}
+    $X$ is a topo space. $X$ is \textcolor{red}{locally compact and Hausdorff} iff
+    there exists a compact Hausdorff space $Y$ and a map $h_Y: X \rightarrow Y$
+    where $h_Y$ is a homeomorphism onto $h_Y(X)$ and $Y \setminus h_Y(X)$ is a single point.
+
+    \begin{itemize}[left=0pt]
+        % \item If $X$ and $Y$ are homeomorphic locally compact Hausdorff, then their
+        % one point compactifications $X^*, Y^*$ are homeomorphic.
+        \item If $f$ is continuous (applies for homeomorphisms) then $C$ is compact $\implies f(C)$
+        is compact.
+        \item Let $X^* = X \cup \{p\}$.
+        Note that $\mathcal{T}_{X^*} = \{U \subset X^*: U \subset X \text{ open}\} \cup \{X^* \setminus C: C \subset X \text{ compact}\}$
+        \item General case of $\mathbb{R}^n$ to $S^n$ (1 pt compactification): $N = (0, 0, ..., 1)$.
+        Define $h: S^n \setminus \{N\} \rightarrow \mathbb{R}^n$ where $(x, t) \mapsto \frac{1}{1-t}x$.
+        It has inverse $h^{-1}(y) = \frac{1}{\lVert y \rVert^2} (2y, \lVert y \rVert^2 - 1)$.
+        \item $S^n$ is the one point compactification of $S^n \setminus \{N\}$ since $S^n$ is 
+        compact Hausdorff, and $h(S^n \setminus \{N\})$ is dense in $S^n$
+    \end{itemize}
+    \subsection{Hausdorff = $T_2$}
+    \begin{itemize}[left=0pt]
+        \item Every closed subspace of a compact space is compact and every compact subspace of a $T_2$ space is closed. 
+        \item If $X$ is compact $T_2$ with no isolated points (so $\{x\}$ is not open and $U \ni y \ne x$)
+        then $X$ is uncountable. 
+        \item If $U \subset X$ is nonempty and open, $x \in X $ not isolated, there exists 
+        a nonempty open $V \subset U$ with $x \notin \overline{V}$.
+        \item \textbf{Any} product of $T_2$ space is $T_2$. Subspace of $T_2$ space is $T_2$.
+        \item $X$ is \textcolor{red}{locally compact and Hausdorff} $\iff$ for any $x \in X$ and open
+        $U \subset X$ containing $x$, exists $V \subset X$ with $x \in V$, $\overline{V} \subset U$, $\overline{V}$ compact. 
+        \item $X$ is homeomorphic to open subset of a \textcolor{red}{compact $T_2$} space $\iff$ $X$ is \textcolor{red}{locally compact and Hausdorff}.
+    \end{itemize}
+
+    \section{Connectedness}
+    Definition: A separation of $X$ is a pair of disjoint, open, \textbf{nonempty}
+    subsets of $X$, $U, V$ whose union is $X$.
+    \begin{itemize}[left=0pt]
+        \item $X$ is connected iff the only sets in $X$ that are open and closed are $\emptyset$ and $X$.
+        \item If $U, V \subset X$ is a separation of $X$ and $Y \subset X$ is a connected subspace
+        then $Y \subset U$ or $Y \subset V$.
+        \item If $\{A_\alpha\}_{\alpha \in \Lambda}$ is a collection of connected subsets of $X$ such that $\bigcap_{\alpha \in \Lambda} A_\alpha \neq \emptyset$, then $\bigcup_{\alpha \in \Lambda} A_\alpha \subset X$ is connected.
+        \item If $A \subset X$ is connected and $A \subset B \subset \overline{A}$, then $B$ is connected.
+        \item If $f : X \to Y$ is continuous and $A \subset X$ is connected, then $f(A) \subset Y$ is connected.
+        \item If $X, Y$ are connected, then $X \times Y$ is connected.
+    \end{itemize}
+    Definition: Given $x, y \in X$, a path is a continuous map $f: [a, b] \rightarrow X$
+    with $f(a) = x, f(b) = y$. $X$ is path connected if for all $x, y \in X$, there is a path
+    from $x$ to $y$.
+
+    Definition: The equivalence class of $\sim$ (resp. $\sim^p$), where $x \sim y$ iff there exists a connected
+    set $C \subset X$ such that $x, y \in C$ (resp. if there exists a path in $X$ from $x$ to $y$), are the connnected 
+    (resp. path connected) components of $X$.
+
+    \begin{itemize}[left=0pt]
+        \item Path connected implies connected. Every path component is path
+        connected and every path component of $X$ lies in a connected component of $X$.
+    \end{itemize}
+
+    \subsection{Local Connectedness}
+    Definition: $X$ is locally (resp. path) connected at $x$ if for all
+        open $U \subset X$ containing $x$, there exists a (resp. path) connected
+        open $V \subset X$ 
+        with $x \in V \subset U$
+    \begin{itemize}[left=0pt]
+        \item $X$ is locally (resp. path) connected $\iff$ for all open $U \subset X$,
+        each (resp. path) connected component of $U$ is open in $X$.
+        
+        \item Let $X$ is locally path connected. Then:
+        \begin{itemize}
+            \item The quotient topology on $ \tilde{X} =$ \{Connected components of X\} is discrete.
+            \item The connected and path components are the same. (Recall all path components
+             $P \subset C$ for some connected component $C$)
+        \end{itemize}
+        \item All connected components are a disjoint union of path components.
+    \end{itemize}
+    \subsection{Topologist's Sine Curve}
+    The topologist's sine curve $\overline{S}$ is connected, because 
+    $S = f((0, 1])$ is connected and $S \subset \overline{S} \subset \overline{S}$.
+    $S$ is path connected as well.
+    However, $\overline{S}$ is not path connected. Suppose on the contrary that 
+    a path (continuous!) $p$ exists with $p(0) = (0, 0)$, $p(1)$ on the curve. Use continuity of 
+    $p$ with closed $\{0\} \times [-1, 1] \subset \mathbb{R}^2$ and $p^{-1}(B) \subset \mathbb{R}$ is closed
+    with a maximum. Consider $p(b) \in B$, $p((b, 1]) \subset S$. Take a sequence $t_i \rightarrow b$ and show
+    $p(t_i)$ does not converge (see Almost $\iff$)
+
+    The topologist's sine curve is not locally connected and not locally path connected.
+    Begin by taking a ball $B_1((0,0))$.
+
+    \subsection{Examples}
+    $\mathbb{Q}$ is neither connected nor locally connected.
+    $(0, 1) \cup (1, 2)$ is not connected but locally connected.
+    See product.
+    \section{Countability}
+    Definition: A topological space $X$ is second countable if 
+    every open subset of $X$ is a union of elements in some countable collection $\mathcal{B}$
+    \begin{itemize}[left=0pt]
+        \item A topological space $X$ is first countable if it has a countable basis at every $x \in X$
+        \item A countable basis of $X$ at $x$ is a countable collection $\mathcal{B}$ of open sets containing $x$
+        s.t. any open $U \subset X$ containing $x$ also contains some $B \in \mathcal{B}$.
+        \item 2nd countable implies 1st countable, pick sets in the countable basis containing $x$
+    \end{itemize}
+    \subsection{Examples}
+    \begin{itemize}[left=0pt]
+        \item $\mathbb{R}^n$ is 2nd countable: $ \{B_r(x): r \in \mathbb{Q}, x \in \mathbb{Q}^n\}$
+        \item $\mathbb{R}^\omega$ is 2nd countable: $\{\prod_{n \in \Lambda} (a_n, b_n) \times \prod_{n \in \mathbb{Z} \setminus \Lambda} 
+        \mathbb{R} \mid a_n, b_n \in \mathbb{Q} \}$
+        \item $\mathbb{R}^\omega$ under uniform topology is \textcolor{red}{not} 2nd countable.
+        \item Uncountable set in the discrete metric not second countable.
+        \item Countable product and subspaces of first and second countable spaces preserve first and second countability.
+    \end{itemize}
+
+    \section{Separation Axioms}
+    Definition: Regular: A $T_1$ space $X$ is $T_3$ if for every closed $B \subset X$ and $x \in X$ where $x \notin B$,
+    $\exists$ open disjoint $U, V \subset X$, $x \in U, B \subset V$ 
+
+    Definition: Normal: A $T_1$ space $X$ is $T_4$ if for every closed, disjoint $A, B \subset X$,
+    $\exists$ open disjoint $U, V \subset X$, $A \subset U, B \subset V$ 
+
+    Definition: Separated: $A$ and $B$ (sometimes $\{x\}$) are separated by
+    a continuous function if there exists cont. $f: X \rightarrow [0, 1]$ st $f(A) = 0, f(B) = 1$.
+
+    Definition: Completely: ..., ... are separated by a continuous function
+    
+    Defition: f is a topo. embedding if f is a homeomorphism between $X$ and $f(X)$ (f need to be injective to its range)
+    \begin{itemize}[left=0pt]
+        \item If $X$ is compact, $T_2 \iff T_3 \iff T_4$
+        \item $T_3 \iff \forall x\in X,\text{ open } U \subset X$ containing $x$, $\exists V \subset X$ open, containing $x$, 
+        such that $\overline{V} \subset U$
+        \item $T_4 \iff \forall \text{ closed } A\subset X,$ open $U \supset A$, $\exists \text{ open } V \supset A$ 
+        such that $\overline{V} \subset U$
+        \item If $X$ is $T_3$ with countable basis, then $X$ is $T_4$.
+        \item Urysohn's Lemma: $X$ is normal $\iff X$ is completely normal 
+        \item Urysohn's Theorem: $X$ is regular with countable basis, then it is metrizable.
+        \item Let X be $T_1$ space, $\{f_{\alpha \in \Lambda}$ is a family of cont. functions from $X$ to $\mathbb{R}$ satisfying: $\forall x \in X, \forall U \overset{\text{open}}{\subset} X$ s.t. $x \in U$, there exists $\alpha \in \Lambda$ s.t. $f_{\alpha}(x)>0$ \& $f_{\alpha}(X \setminus U) = \{0\}$. Then map $F: X \to \mathbb{R}^{\Lambda}, x \mapsto (f_{\alpha}(x))_{\alpha \in \Lambda}$ is an embedding of $X$ into $\mathbb{R}^{\Lambda}$
+    \end{itemize}
+
+    \section{Function Spaces \& Equicontinuity}
+    Let $(Y, d)$ be a metric space and $X$ a topo space.
+    The topology of compact convergence is defined over 
+    $Y^X$. Given a compact $C \subset X$, $\epsilon > 0$,
+    $B(C, f, \epsilon) = \{g \in Y^X\mid \sup_{x \in C} d(f(x), g(x)) < \epsilon\}$
+    is a basis element.
+    \begin{itemize}[left=0pt]
+        \item A sequence of functions in $Y^X$ converges to $f$
+        in the topology of compact convergence $\iff$ for every compact
+        $C \subset X$, $f_n|_C\rightarrow f|_C$ uniformly.
+    \end{itemize}
+
+    The compact-open topology is defined over $C(X, Y)$.
+    Let $C \subset X$ be compact and $U \subset Y$ open,
+    $S(C, U) = \{g \in C(X, Y) \mid g(C) \subset U\}$
+    is a subbasis element.
+\begin{itemize}[left=0pt]
+    \item Let $X$ be a compactly generated topo space and $(Y,d)$ a metric space. $C(X,Y) \subset Y^X$ is closed in 
+    the topology of compact convergence (generated by basis elements).
+\end{itemize}
+
+Definition: Let $(Y,d)$ be a metric space and $\mathcal{F} \subset C(X,Y)$. Fix $x_0 \in X$, then 
+$\mathcal{F} \text{ is \textbf{equicontinuous} at } x_0$ if $\forall  \epsilon > 0, \exists U \subset X$ open, $U \ni x_0$ st $\forall x \in U, \forall f \in \mathcal{F}$, $d(\, f(x), \, f(x_0)\, ) < \epsilon$. 
+
+% $\mathcal{F} $ is \textbf{equicontinuous} if it is equicontinuous at every $x_0 \in X$.
+% (a single nbhb can be chosen that ensures every function in $\mathcal{F}$ is continuous at $x_0$)
+
+Let X be topo space, $(Y,d)$ be metric space, $\bar{\rho} $ the uniform metric on $C(X,Y)$. $\mathcal{F} \subset C(X,Y) \text{ is totally bounded wrt } \bar{\rho} \implies \mathcal{F} \text{ is equicontinuous. } $
+
+If $\mathcal{G} \subset C(X,Y)$ is equicontinuous, the topology of compact convergence and the topology of pointwise convergence on $\mathcal{G}$ agrees.
+
+\textbf{ Arzela-Ascoli Theorem}: Let X be a topo space, $(Y,d)$ be a metric space. Endow $C(X,Y)$ with the compact-open topology and let $\mathcal{F} \subset C(X,Y)$.
+
+\begin{itemize}[left=0pt]
+	\item[i.] If $\mathcal{F}$ is equicontinuous under $d$ and  $\mathcal{F}_a = \{ f(a): f\in \mathcal{F} \}$  has a compact closure for each $a \in X$, then $\overline{\mathcal{F}} \subset C(X,Y)$ is compact wrt uniform topology.
+	\item[ii.] The converse holds if $X$ is \textcolor{red}{locally compact and Hausdorff}.
+\end{itemize}
+
+%Function $f:X\toY$ is cont. iff 
+        %\begin{itemize}
+               % \item $\forall A \subset X$, $f(\bar{A}) \subset \bar{f(A)}$  
+	    %\item For $B \overset{\text{closed}}{\subset} Y$, $f^{-1}(B) \overset{\text{closed}}{\subset}X$  
+	    %\item For $x \in X$, $V \overset{\text{open}}{\subset} Y$ containing $f(x)$, $\exists U \overset{\text{open}}{\subset} X$ containing $x$ s.t. $f(U)\subset V$
+            %\end{itemize}
+    % \subsection{Subsection}
+    % This is a subsection
+
+    % \subsubsection{Subsubsection}
+    % This is a subsubsection
+
+    % % Two-column layout within the section
+    % \begin{minipage}{0.49\linewidth}
+    %     Left
+    % \end{minipage}
+    % \hfill
+    % \begin{minipage}{0.49\linewidth}
+    %    Right
+    % \end{minipage}
+
+    % \section{Table Example}
+    % \begin{tabularx}{\linewidth}{|X|X|X|}
+    %     \hline
+    %     \textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} \\
+    %     \hline
+    %     Row 1, Col 1 & Row 1, Col 2 & Row 1, Col 3 \\
+    %     \hline
+    %     Row 2, Col 1 & Row 2, Col 2 & Row 2, Col 3 \\
+    %     \hline
+    %     Row 3, Col 1 & Row 3, Col 2 & Row 3, Col 3 \\
+    %     \hline
+    % \end{tabularx}
+
+    % \section{Boxed Equation}
+    % % Boxed equation with a simple math expression
+    % \mathbox{
+    %     $E = mc^2$
+    % }
+   
+
+  
+}
